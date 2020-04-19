@@ -14,3 +14,10 @@ The code uses 3 I/O pins for:
   - driving a status LED
 
 The final size is about 1700 bytes.
+
+
+## Thanks
+
+The project is using previous works of others, so thank you for:
+  - stecman for 1-wire and DS1820: https://gist.github.com/stecman/9ec74de5e8a5c3c6341c791d9c233adc
+  - the ATMEL docs for serial communication: http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf
