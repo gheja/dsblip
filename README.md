@@ -1,6 +1,6 @@
 # dsblip
 
-Send the measurements of one or more DS1820/DS18S20/DS128B20 1-wire thermometers over 433 MHz radio using an AVR microcontroller.
+Send the measurements of one or more DS1820/DS18S20/DS18B20 1-wire thermometers over 433 MHz radio using an AVR microcontroller.
 
 Components:
   - AVR microcontroller
