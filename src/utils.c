@@ -14,10 +14,10 @@ void gset_output_low() {
     BIT_CLEAR(OW_PORT, OW_BIT);
 }
 
-void gset_input_pullup() {
-    OW_DDR &= ~_BV(OW_BIT);
-    gset_output_high();
-}
+// void gset_input_pullup() {
+//     OW_DDR &= ~_BV(OW_BIT);
+//     gset_output_high();
+// }
 
 void gset_input_hiz() {
     BIT_CLEAR(OW_DDR, OW_BIT);
@@ -28,13 +28,13 @@ void gset_output() {
     OW_DDR |= _BV(OW_BIT);
 }
 
-void gset_bit() {
-    OW_PORT |= _BV(OW_BIT);
-}
+// void gset_bit() {
+//     OW_PORT |= _BV(OW_BIT);
+// }
 
-void gclear_bit() {
-    OW_PORT &= ~_BV(OW_BIT);
-}
+// void gclear_bit() {
+//     OW_PORT &= ~_BV(OW_BIT);
+// }
 
 uint8_t gread_bit() {
     return OW_PIN & _BV(OW_BIT);

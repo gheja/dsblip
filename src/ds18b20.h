@@ -1,8 +1,8 @@
-static uint16_t ds18b20_readScratchPad();
+// static uint16_t ds18b20_readScratchPad();
 uint16_t ds18b20_readScratchPad2();
-uint16_t ds18b20_read_single();
+// uint16_t ds18b20_read_single();
 uint16_t ds18b20_read_slave();
-uint16_t ds18b20_convert();
+// uint16_t ds18b20_convert();
 uint16_t ds18b20_convert_slave();
 
 // Special return values

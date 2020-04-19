@@ -55,6 +55,7 @@ static void send_ppm(uint8_t data[], uint8_t length, uint8_t repeats, uint8_t so
 	}
 }
 
+/*
 static void prologue_send(uint8_t id, uint8_t channel, int16_t temperature10, uint8_t humidity, uint8_t battery_status, uint8_t button_pressed)
 {
 	uint8_t data[5];
@@ -101,6 +102,7 @@ static void prologue_send(uint8_t id, uint8_t channel, int16_t temperature10, ui
 	
 	send_ppm(data, length, 7, 0);
 }
+*/
 
 // based on https://github.com/merbanan/rtl_433/blob/master/src/devices/rubicson.c - thanks!
 static uint8_t rubicson_crc(uint8_t const data[])

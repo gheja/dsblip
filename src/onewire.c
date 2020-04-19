@@ -155,10 +155,10 @@ void onewire_match_rom()
     }
 }
 
-void onewire_skiprom()
-{
-    onewire_write(0xCC);
-}
+// void onewire_skiprom()
+// {
+//     onewire_write(0xCC);
+// }
 
 /**
  * Search procedure for the next ROM addresses
@@ -302,11 +302,11 @@ bool onewire_search()
     return _search_devices(0xF0);
 }
 
-bool onewire_alarm_search()
-{
-    // Search with "Alarm Search" command
-    return _search_devices(0xEC);
-}
+// bool onewire_alarm_search()
+// {
+//     // Search with "Alarm Search" command
+//     return _search_devices(0xEC);
+// }
 
 bool onewire_check_rom_crc()
 {

@@ -58,10 +58,10 @@ inline void gset_output_low() {
     BIT_CLEAR(OW_PORT, OW_BIT);
 }
 
-void gset_input_pullup() {
-    OW_DDR &= ~_BV(OW_BIT);
-    gset_output_high();
-}
+// void gset_input_pullup() {
+//     OW_DDR &= ~_BV(OW_BIT);
+//     gset_output_high();
+// }
 
 inline void gset_input_hiz() {
     BIT_CLEAR(OW_DDR, OW_BIT);
@@ -72,13 +72,13 @@ inline void gset_output() {
     OW_DDR |= _BV(OW_BIT);
 }
 
-void gset_bit() {
-    OW_PORT |= _BV(OW_BIT);
-}
+// void gset_bit() {
+//     OW_PORT |= _BV(OW_BIT);
+// }
 
-void gclear_bit() {
-    OW_PORT &= ~_BV(OW_BIT);
-}
+// void gclear_bit() {
+//     OW_PORT &= ~_BV(OW_BIT);
+// }
 
 inline uint8_t gread_bit() {
     return OW_PIN & _BV(OW_BIT);
@@ -248,10 +248,10 @@ void onewire_match_rom()
     }
 }
 
-void onewire_skiprom()
-{
-    onewire_write(0xCC);
-}
+// void onewire_skiprom()
+// {
+//     onewire_write(0xCC);
+// }
 
 /**
  * Search procedure for the next ROM addresses
@@ -395,11 +395,11 @@ bool onewire_search()
     return _search_devices(0xF0);
 }
 
-bool onewire_alarm_search()
-{
-    // Search with "Alarm Search" command
-    return _search_devices(0xEC);
-}
+// bool onewire_alarm_search()
+// {
+//     // Search with "Alarm Search" command
+//     return _search_devices(0xEC);
+// }
 
 bool onewire_check_rom_crc()
 {
@@ -426,24 +426,24 @@ static const uint8_t kScratchPad_tempMSB = 1;
 static const uint8_t kScratchPad_tempCountRemain = 6;
 static const uint8_t kScratchPad_crc = 8;
 
-static uint16_t ds18b20_readScratchPad()
-{
-	// Read scratchpad into buffer (LSB byte first)
-	static const int8_t kScratchPadLength = 9;
-	uint8_t buffer[kScratchPadLength];
-	
-	for (int8_t i = 0; i < kScratchPadLength; ++i) {
-		buffer[i] = onewire_read();
-	}
-	
-	// Check the CRC (9th byte) against the 8 bytes of data
-	if (crc8(buffer, 8) != buffer[kScratchPad_crc]) {
-		return kDS18B20_CrcCheckFailed;
-	}
-	
-	// Return the raw 9 to 12-bit temperature value
-	return (buffer[kScratchPad_tempMSB] << 8) | buffer[kScratchPad_tempLSB];
-}
+// static uint16_t ds18b20_readScratchPad()
+// {
+// 	// Read scratchpad into buffer (LSB byte first)
+// 	static const int8_t kScratchPadLength = 9;
+// 	uint8_t buffer[kScratchPadLength];
+// 	
+// 	for (int8_t i = 0; i < kScratchPadLength; ++i) {
+// 		buffer[i] = onewire_read();
+// 	}
+// 	
+// 	// Check the CRC (9th byte) against the 8 bytes of data
+// 	if (crc8(buffer, 8) != buffer[kScratchPad_crc]) {
+// 		return kDS18B20_CrcCheckFailed;
+// 	}
+// 	
+// 	// Return the raw 9 to 12-bit temperature value
+// 	return (buffer[kScratchPad_tempMSB] << 8) | buffer[kScratchPad_tempLSB];
+// }
 
 uint16_t ds18b20_readScratchPad2()
 {
@@ -476,20 +476,20 @@ uint16_t ds18b20_readScratchPad2()
 	}
 }
 
-uint16_t ds18b20_read_single()
-{
-	// Confirm the device is still alive. Abort if no reply
-	if (!onewire_reset()) {
-		return kDS18B20_DeviceNotFound;
-	}
-	
-	// Reading a single device, so skip sending a device address
-	onewire_skiprom();
-	onewire_write(kReadScatchPad);
-	
-	// Read the data from the scratch pad
-	return ds18b20_readScratchPad();
-}
+// uint16_t ds18b20_read_single()
+// {
+// 	// Confirm the device is still alive. Abort if no reply
+// 	if (!onewire_reset()) {
+// 		return kDS18B20_DeviceNotFound;
+// 	}
+// 	
+// 	// Reading a single device, so skip sending a device address
+// 	onewire_skiprom();
+// 	onewire_write(kReadScatchPad);
+// 	
+// 	// Read the data from the scratch pad
+// 	return ds18b20_readScratchPad();
+// }
 
 uint16_t ds18b20_read_slave()
 {
@@ -505,19 +505,19 @@ uint16_t ds18b20_read_slave()
 	return ds18b20_readScratchPad2();
 }
 
-uint16_t ds18b20_convert()
-{
-	// Confirm the device is still alive. Abort if no reply
-	if (!onewire_reset()) {
-		return kDS18B20_DeviceNotFound;
-	}
-	
-	// Send convert command to all devices (this has no response)
-	onewire_skiprom();
-	onewire_write(kConvertCommand);
-	
-	return 0;
-}
+// uint16_t ds18b20_convert()
+// {
+// 	// Confirm the device is still alive. Abort if no reply
+// 	if (!onewire_reset()) {
+// 		return kDS18B20_DeviceNotFound;
+// 	}
+// 	
+// 	// Send convert command to all devices (this has no response)
+// 	onewire_skiprom();
+// 	onewire_write(kConvertCommand);
+// 	
+// 	return 0;
+// }
 
 uint16_t ds18b20_convert_slave()
 {
@@ -595,6 +595,7 @@ static void send_ppm(uint8_t bytes[], uint8_t length, uint8_t repeats, uint8_t s
 	}
 }
 
+/*
 static void prologue_send(uint8_t id, uint8_t channel, int16_t temperature10, uint8_t humidity, uint8_t battery_status, uint8_t button_pressed)
 {
 	uint8_t bytes[5];
@@ -641,6 +642,7 @@ static void prologue_send(uint8_t id, uint8_t channel, int16_t temperature10, ui
 	
 	send_ppm(bytes, length, 7, 0);
 }
+*/
 
 // based on https://github.com/merbanan/rtl_433/blob/master/src/devices/rubicson.c - thanks!
 static uint8_t rubicson_crc(uint8_t const data[])
