@@ -9,9 +9,9 @@
 #define DDR DDRB
 #define PORT PORTB
 #define PIN_IN PINB
-#define PIN_RADIO 0
+#define PIN_RADIO 3
 #define PIN_LED 1
-#define PIN_SENSOR 2
+#define PIN_SENSOR 4
 
 #define OW_DDR DDR
 #define OW_PORT PORT
