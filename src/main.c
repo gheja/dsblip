@@ -92,7 +92,7 @@ int main()
 		_delay_ms(50);
 		LED_OFF;
 		
-		_delay_ms(50);
+		_delay_ms(100);
 		
 		if (onewire_reset())
 		{
