@@ -165,7 +165,13 @@ int main()
 					
 					solight_te44_send(a2, a3, temperature10);
 					
-					// wait before going to the next device - 16 seconds
+					// wait before going to the next device - 64 seconds
+					sleep2(true);
+					sleep2(true);
+					sleep2(true);
+					sleep2(true);
+					sleep2(true);
+					sleep2(true);
 					sleep2(true);
 					sleep2(true);
 					
