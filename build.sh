@@ -1,15 +1,22 @@
 #!/bin/bash
 
 program="dsblip"
-# programmer="usbasp"
-programmer="usbtiny"
+programmer="usbasp"
+# programmer="usbtiny"
 # profile="attiny13"
-profile="trinket"
+profile="attiny85"
+# profile="trinket"
 
 if [ "$profile" == "attiny13" ]; then
 	mcu1="attiny13"
 	mcu2="t13"
 	f_cpu="8000000"
+elif [ "$profile" == "attiny85" ]; then
+	mcu1="attiny85"
+	mcu2="t85"
+	f_cpu="8000000"
+	# # 6.4 MHz / 8 = 800 kHz
+	# f_cpu="800000"
 elif [ "$profile" == "atmega328p" ]; then
 	mcu1="atmega328p"
 	mcu2="m328p"
@@ -38,7 +45,7 @@ avr-gcc -std=c99 -g -Os -mmcu=${mcu1} -o ${program}.o -DF_CPU=${f_cpu} \
 
 avr-objcopy -j .text -j .data -O ihex ${program}.o ${program}.hex || exit 1
 avr-size -d --mcu=${mcu1} ${program}.o
-avr-objdump -d test.o > test.asm
+avr-objdump -d ${program}.o > ${program}.asm
 
 final_size=`avr-size -d --mcu=${mcu1} ${program}.o | tail -n 1 | awk '{ print $4; }'`
 
